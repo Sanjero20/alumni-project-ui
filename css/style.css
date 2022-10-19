@@ -32,6 +32,10 @@ body {
   align-items: center;
 }
 
+.hide {
+  display: none;
+}
+
 :root {
   --red: #9c0d20;
   --dark-red: #8c0c1d;

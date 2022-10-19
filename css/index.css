@@ -1,7 +1,6 @@
 /* Splash Screen */
 .background {
   position: absolute;
-
   background-image: url('/assets/images/bsu-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -82,7 +81,7 @@
 
 .login,
 .signup {
-  gap: var(--m-gap);
+  gap: var(--s-gap);
 }
 
 legend {
@@ -126,6 +125,7 @@ fieldset {
   background-color: #d0112b;
   border: 1px;
   padding: 10px;
+  margin-top: var(--s-gap);
   color: inherit;
   font-size: 1em;
   border-radius: 10px;
@@ -171,4 +171,10 @@ fieldset {
   -webkit-text-fill-color: inherit;
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: black;
+}
+
+/* Authentication form hide */
+.auth-form.login.hide,
+.auth-form.signup.hide {
+  display: none;
 }

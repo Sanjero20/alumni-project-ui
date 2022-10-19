@@ -19,8 +19,83 @@
     <main class="auth-page maximize center-all">
       <section class="container center-all">
         <div class="middle"></div>
-        <div class="left center-all">
-          <!-- login/signup form -->
+        <div class="left maximize center-all">
+          <form action="" class="auth-form login" id="login-form">
+            <legend>LOGIN</legend>
+
+              <fieldset>
+                <label for="username"> Username </label>
+              <div class="inputs">
+                <input type="text" name="username">
+                <i class="fa-solid fa-circle-user"></i>
+              </div>
+            </fieldset>
+            
+            <fieldset>
+              <label for="password"> Password </label>
+              <div class="inputs">
+                <input type="password" name="password" />
+                <i class="fa-solid fa-lock"></i>
+              </div>
+            </fieldset>
+          
+            <button type="submit" class="login-btn">LOGIN</button>
+            
+            <p class="new-account">
+              Don't have an account?
+              <span id="create-acc">Sign Up</span>
+            </p>
+          </form>
+          <!-- End of Login Form -->
+
+          <form action="" class="auth-form signup hide" id="signup-form">
+            <legend>SIGN UP</legend>
+        
+            <fieldset>
+              <label for="username"> Username </label>
+              <div class="inputs">
+                <input type="text" name="username" id="username" />
+                <i class="fa-solid fa-circle-user"></i>
+              </div>
+            </fieldset>
+        
+            <fieldset>
+              <label for="email"> Email </label>
+              <div class="inputs">
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  autocomplete="off"
+                />
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+            </fieldset>
+        
+            <fieldset>
+              <label for="pass"> Password </label>
+              <div class="inputs">
+                <input type="password" name="password" id="pass" />
+                <i class="fa-solid fa-lock"></i>
+              </div>
+            </fieldset>
+        
+            <fieldset>
+              <label for="cpass"> Confirm Password </label>
+              <div class="inputs">
+                <input type="password" name="cpass" id="cpass" />
+                <i class="fa-solid fa-lock"></i>
+              </div>
+            </fieldset>
+        
+            <button type="submit" class="signup-btn">SIGN UP</button>
+          
+            <p class="have-account">
+              Already have an account?
+              <span id="login-acc">Log In</span>
+            </p>
+          </form>
+          <!-- End of sign up form -->
         </div>
         <div class="right center-all">
           <img src="/assets/images/bsu-logo.png" alt="bsu-logo" />
