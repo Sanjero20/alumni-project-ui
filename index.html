@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="https://kit.fontawesome.com/5f33a2223c.js" crossorigin="anonymous"></script>
     <script src="js/index.js" defer></script>
+    <script src="js/formValidation.js" defer></script>
   </head>
   <body>
     <!-- Background Image  -->
@@ -20,6 +21,7 @@
       <section class="container center-all">
         <div class="middle"></div>
         <div class="left maximize center-all">
+          <!-- Login Form -->
           <form action="" class="auth-form login" id="login-form">
             <legend>LOGIN</legend>
 
@@ -48,6 +50,7 @@
           </form>
           <!-- End of Login Form -->
 
+          <!-- Signup form -->
           <form action="" class="auth-form signup hide" id="signup-form">
             <legend>SIGN UP</legend>
         
@@ -57,19 +60,16 @@
                 <input type="text" name="username" id="username" />
                 <i class="fa-solid fa-circle-user"></i>
               </div>
+              <div class="error user-msg"></div>
             </fieldset>
         
             <fieldset>
               <label for="email"> Email </label>
               <div class="inputs">
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  autocomplete="off"
-                />
+                <input type="email" name="email" id="email" autocomplete="off" />
                 <i class="fa-solid fa-envelope"></i>
               </div>
+              <div class="error email-msg"></div>
             </fieldset>
         
             <fieldset>
@@ -78,6 +78,7 @@
                 <input type="password" name="password" id="pass" />
                 <i class="fa-solid fa-lock"></i>
               </div>
+              <div class="error pass-msg"></div>
             </fieldset>
         
             <fieldset>
@@ -86,6 +87,7 @@
                 <input type="password" name="cpass" id="cpass" />
                 <i class="fa-solid fa-lock"></i>
               </div>
+              <div class="error cpass-msg"></div>
             </fieldset>
         
             <button type="submit" class="signup-btn">SIGN UP</button>
