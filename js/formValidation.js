@@ -10,6 +10,10 @@ const emailError = document.querySelector('.email-msg');
 const passError = document.querySelector('.pass-msg');
 const cpassError = document.querySelector('.cpass-msg');
 
+// All fields
+const formInputs = document.querySelectorAll('#signup-form input');
+const formErrors = document.querySelectorAll('#signup-form .error');
+
 function ifEmpty(inputField, errorField) {
   if (inputField.value.trim() == '') {
     errorField.textContent = '* Must not be empty';
@@ -18,16 +22,13 @@ function ifEmpty(inputField, errorField) {
   }
 }
 
+// Event Listeners
 username.addEventListener('input', e => {
   ifEmpty(username, userError);
 });
 
 email.addEventListener('input', e => {
-  if (email.validity.typeMismatch) {
-    emailError.textContent = '* Must be a valid email address';
-  } else {
-    emailError.textContent = '';
-  }
+  validateEmail();
 });
 
 password.addEventListener('input', () => {
@@ -35,16 +36,27 @@ password.addEventListener('input', () => {
 });
 
 confirmPassword.addEventListener('input', e => {
-  if (confirmPassword.value != password.value) {
-    cpassError.textContent = '* Password does not match';
-  } else {
-    cpassError.textContent = '';
-  }
+  checkPassword();
 });
 
 function checkPattern(value, pattern) {
   pattern = new RegExp(pattern);
   return pattern.test(value);
+}
+
+// Validation function
+function validateUsername() {
+  ifEmpty(username, userError);
+}
+
+function validateEmail() {
+  if (email.value.trim() == '') {
+    emailError.textContent = '* Must not be empty';
+  } else if (email.validity.typeMismatch) {
+    emailError.textContent = '* Must be a valid email address';
+  } else {
+    emailError.textContent = '';
+  }
 }
 
 function validatePassword() {
@@ -85,11 +97,49 @@ function validatePassword() {
 
     passError.setAttribute('style', 'white-space: pre');
     passError.innerHTML = errorMsg;
+  } else if (passwordValue.trim() == '') {
+    passError.textContent = '* Must not be empty';
   } else {
     passError.textContent = '';
   }
 }
 
-// TODO Check if all input is valid,
-// If valid, proceed, else prompt errors
-const signupFormInputs = document.querySelectorAll('#signup-form input');
+function checkPassword() {
+  if (confirmPassword.value != password.value) {
+    cpassError.textContent = '* Password does not match';
+  } else if (confirmPassword.value == '') {
+    cpassError.textContent = '* Must not be empty';
+  } else {
+    cpassError.textContent = '';
+  }
+}
+
+// Check if all input is valid
+const submitBtn = document.querySelector('.signup-btn');
+submitBtn.addEventListener('click', () => {
+  validateUsername();
+  validateEmail();
+  validatePassword();
+  checkPassword();
+
+  // Check if every input field is valid
+  let isValid = false;
+  formErrors.forEach(error => {
+    if (error.textContent == '') {
+      isValid = true;
+    } else {
+      isValid = false;
+    }
+  });
+
+  if (isValid === false) return;
+  // Send to Database for checking
+});
+
+formInputs.forEach((input, index) => {
+  input.addEventListener('focusout', e => {
+    if (input.value.trim() == '') {
+      formErrors[index].textContent = '';
+    }
+  });
+});
