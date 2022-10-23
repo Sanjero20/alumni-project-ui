@@ -23,6 +23,15 @@ function ifEmpty(inputField, errorField) {
 }
 
 // Event Listeners
+// Remove error if emptyy and not on focus
+formInputs.forEach((input, index) => {
+  input.addEventListener('focusout', e => {
+    if (input.value.trim() == '') {
+      formErrors[index].textContent = '';
+    }
+  });
+});
+
 username.addEventListener('input', e => {
   ifEmpty(username, userError);
 });
@@ -133,13 +142,19 @@ submitBtn.addEventListener('click', () => {
   });
 
   if (isValid === false) return;
+  submitAnimation();
+  // Get all values
   // Send to Database for checking
+  // If approved, continue to questionnaire
 });
 
-formInputs.forEach((input, index) => {
-  input.addEventListener('focusout', e => {
-    if (input.value.trim() == '') {
-      formErrors[index].textContent = '';
-    }
-  });
-});
+function submitAnimation() {
+  const left = document.querySelector('.left');
+  const right = document.querySelector('.right');
+
+  left.classList.remove('adjust');
+  left.classList.remove('switch');
+
+  right.classList.remove('adjust');
+  right.classList.remove('switch');
+}
