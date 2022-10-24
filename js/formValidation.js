@@ -10,6 +10,9 @@ const emailError = document.querySelector('.email-msg');
 const passError = document.querySelector('.pass-msg');
 const cpassError = document.querySelector('.cpass-msg');
 
+// Buttons
+const submitBtn = document.querySelector('.signup-btn');
+
 // All fields
 const formInputs = document.querySelectorAll('#signup-form input');
 const formErrors = document.querySelectorAll('#signup-form .error');
@@ -48,12 +51,38 @@ confirmPassword.addEventListener('input', e => {
   checkPassword();
 });
 
+submitBtn.addEventListener('click', () => {
+  validateUsername();
+  validateEmail();
+  validatePassword();
+  checkPassword();
+
+  // Check if every input field is valid
+  let isValid = false;
+  formErrors.forEach(error => {
+    if (error.textContent == '') {
+      isValid = true;
+    } else {
+      isValid = false;
+    }
+  });
+
+  if (isValid === false) return;
+  const account = getAllInputValues();
+  submitAnimation();
+  resetForm();
+  /* 
+    TODO: Send to Database for checking
+    ? If approved, continue to questionnaire page
+  */
+});
+
+// Validation function
 function checkPattern(value, pattern) {
   pattern = new RegExp(pattern);
   return pattern.test(value);
 }
 
-// Validation function
 function validateUsername() {
   ifEmpty(username, userError);
 }
@@ -123,31 +152,7 @@ function checkPassword() {
   }
 }
 
-// Check if all input is valid
-const submitBtn = document.querySelector('.signup-btn');
-submitBtn.addEventListener('click', () => {
-  validateUsername();
-  validateEmail();
-  validatePassword();
-  checkPassword();
-
-  // Check if every input field is valid
-  let isValid = false;
-  formErrors.forEach(error => {
-    if (error.textContent == '') {
-      isValid = true;
-    } else {
-      isValid = false;
-    }
-  });
-
-  if (isValid === false) return;
-  submitAnimation();
-  // Get all values
-  // Send to Database for checking
-  // If approved, continue to questionnaire
-});
-
+// Submit functions
 function submitAnimation() {
   const left = document.querySelector('.left');
   const right = document.querySelector('.right');
@@ -157,4 +162,20 @@ function submitAnimation() {
 
   right.classList.remove('adjust');
   right.classList.remove('switch');
+}
+
+function getAllInputValues() {
+  const account = {
+    username: username.value,
+    email: email.value,
+    password: password.value,
+  };
+
+  return account;
+}
+
+function resetForm() {
+  formInputs.forEach(input => {
+    input.value = '';
+  });
 }
