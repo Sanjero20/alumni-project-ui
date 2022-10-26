@@ -19,6 +19,7 @@
 }
 
 .auth-page > .container {
+  transform: scale(0.9);
   position: relative;
   height: 625px;
   width: min(80%, 800px);
