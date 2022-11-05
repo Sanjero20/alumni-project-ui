@@ -1,7 +1,4 @@
-/*
- * This are the functions that
- * will be used to validate the form inputs
- */
+// Signup validation module
 
 // Input Fields
 const username = document.getElementById('username');
