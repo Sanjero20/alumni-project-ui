@@ -27,7 +27,7 @@ const signUpBtn = document.querySelector('.signup-btn');
 
 // All fields
 const allInputs = document.querySelectorAll('input');
-const formErrors = document.querySelectorAll('#signup-form .error');
+const formErrors = document.querySelectorAll('.error');
 
 // Event listeners
 newAccount.addEventListener('click', switchToSignUp);
@@ -80,14 +80,27 @@ function resetAllForms() {
   allInputs.forEach(input => {
     input.value = '';
   });
+
+  formErrors.forEach(error => {
+    error.textContent = '';
+  });
 }
 
 //* Driver code
-// animate splash screen
-setTimeout(() => {
-  background.classList.add('show');
+// animate splash screen (desktop)
+// Execute if in mobile device
+if (window.matchMedia('(max-width: 767px)').matches) {
   setTimeout(() => {
-    leftPart.classList.add('adjust');
-    rightPart.classList.add('adjust');
-  }, 300);
-}, 750);
+    background.classList.add('show');
+    rightPart.classList.add('decay');
+  }, 750);
+} else {
+  // Execute if in desktop
+  setTimeout(() => {
+    background.classList.add('show');
+    setTimeout(() => {
+      leftPart.classList.add('adjust');
+      rightPart.classList.add('adjust');
+    }, 300);
+  }, 750);
+}

@@ -129,24 +129,12 @@ function registerAccount() {
   if (isValid === false) return;
 
   const account = getAllInputValues();
-  submitAnimation();
   resetForm();
 
   /* 
     TODO: Send to Database for checking
     ? If approved, continue to questionnaire page
   */
-}
-
-function submitAnimation() {
-  const left = document.querySelector('.left');
-  const right = document.querySelector('.right');
-
-  left.classList.remove('adjust');
-  left.classList.remove('switch');
-
-  right.classList.remove('adjust');
-  right.classList.remove('switch');
 }
 
 function getAllInputValues() {
